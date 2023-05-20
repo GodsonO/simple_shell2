@@ -12,13 +12,19 @@ ssize_t custom_getline(char **lineptr, size_t *n, FILE *stream)
 	ssize_t bytesRead;
 
 	if (lineptr == NULL || n == NULL)
+	{
 		perror("Invalid arguments");
 		return (-1);
+	}
 	if (*lineptr == NULL)
+	{
 		*lineptr = malloc(bufsize);
 		if (*lineptr == NULL)
+		{
 			perror("Memory allocation failed");
 			return (-1);
+		}
+	}
 	while ((bytesRead = read(fileno(stream), &(*lineptr)[i], 1)) > 0)
 	{
 		if ((*lineptr)[i] == '\n')
@@ -30,22 +36,28 @@ ssize_t custom_getline(char **lineptr, size_t *n, FILE *stream)
 			char *newptr = realloc(*lineptr, bufsize);
 
 			if (newptr == NULL)
+			{
 				perror("Memory reallocation failed");
 				free(*lineptr);
 				*lineptr = NULL;
 				return (-1);
+			}
 			*lineptr = newptr;
 		}
 	}
 	if (bytesRead == -1)
+	{
 		perror("Read error");
 		free(*lineptr);
 		*lineptr = NULL;
 		return (-1);
+	}
 	(*lineptr)[i] = '\0';
 	if (bytesRead == 0 && i == 0)
+	{
 		free(*lineptr);
 		*lineptr = NULL;
 		return (-1);
+	}
 	return (i);
 }
