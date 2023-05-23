@@ -161,7 +161,8 @@ void execute_script(const char *script_file)
 	}
 	close(file);
 }
-/*int execute_pipeline(char *commands[], int num_commands)
+/*
+int execute_pipeline(char *commands[], int num_commands)
 {
 	int pipefds[MAX_CMDS -1][2];
 	int i;
@@ -193,8 +194,7 @@ void execute_script(const char *script_file)
 		close(pipefds[i][1]);
 	}
 	return (0);
-}
-*/
+}*/
 int main(int argc, char *argv[])
 {
 	if (argc != 2)

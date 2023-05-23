@@ -9,11 +9,9 @@
 
 int main(int ac, char *av[])
 {
-	(void) ac;
-	(void) av;
-
 	if (isatty(STDIN_FILENO) == 1)
 	{
+		int stats;
 		ssize_t nwrite;
 		char *input = NULL;
 		char **tokenized_input = NULL;
@@ -31,14 +29,15 @@ int main(int ac, char *av[])
 				putchar('\n');
 				break;
 			}
-
 			tokenized_input = token(input);
-			grammer(tokenized_input, ac, av);
-
+			stats = grammer(tokenized_input, ac, av);
+			if (stats == 0)
+			{
+				execute(tokenized_input, ac, av);
+			}
 			free(input);
 			free_token(tokenized_input);
 		}
-		
 	}
 	else
 	{
@@ -46,8 +45,15 @@ int main(int ac, char *av[])
 		{
 			char *user_input = usr_input();
 			char **tokens = token(user_input);
-			//printf("this is non-interactive mode");
 
+			if (grammer(tokens, ac, av) == 0)
+			{
+				exec_cmnd(tokens);
+			}
+		}
+		else
+		{
+			err_msg("usage: echo");
 		}
 	}
 	return(0);

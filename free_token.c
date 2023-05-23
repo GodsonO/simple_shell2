@@ -18,6 +18,4 @@ void free_token(char **token)
 	{
 		free(token[i]);
 	}
-
-	//free(token);
 }

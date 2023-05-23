@@ -1,49 +1,51 @@
 #include "shell.h"
 
 /**
- * usage_err - print err to stdout
+ * print_err - print err to stdout
  * @str: the msg to write to stdout
  *
  */
-
-void print_err(const char *str, ...)
+void print_err(const char *format, ...)
 {
-	va_list arg_list;
-	char *arg_value;
-	int arg2_value;
-	char num_str[20];
-	ssize_t nwrite;
-	const char *ch;
-	va_start(arg_list, str);
+	va_list argp;
+	char *str_arg;
+	size_t str_len;
+	int int_arg;
 
+	const char *p = format;
+	va_start(argp, format);
 
-	ch = str;
-
-	while(*ch)
+	while(*p != '\0')
 	{
-		if (*ch == '%' && *(ch + 1) == 's')
+		if (*p == '%' && *(p + 1) != '\0')
 		{
-			ch += 2;
-
-			arg_value = va_arg(arg_list, char *);
-			write_str(arg_value);
-		}
-		else if (*ch == '%' && *(ch + 1) == 'd')
-		{
-			ch += 2;
-			arg2_value = va_arg(arg_list, int);
-			num_str[20];
-			write_int(arg2_value);
+			if (*(p + 1) == 's')
+			{
+				str_arg = va_arg(argp, char *);
+				str_len = strlen(str_arg);
+				write_string(str_arg, str_len);
+				p += 2;
+				break;
+			}
+			else if (*(p + 1) == 'd')
+			{
+				int_arg = va_arg(argp, int);
+				write_integer(int_arg);
+				p += 2;
+				break;
+			}
+			else
+			{
+				write_character(*p);
+				p += 1;
+				break;
+			}
 		}
 		else
 		{
-			nwrite = write(STDERR_FILENO, ch, 1);
-			if (nwrite == -1)
-			{
-				sys_err("write");
-			}
-			ch++;
+			write_character(*p);
+			p += 1;
 		}
 	}
-	va_end(arg_list);
+	va_end(argp);
 }

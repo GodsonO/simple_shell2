@@ -5,11 +5,14 @@
  * @token: the tokenized word
  *
  */
-char **grammer(char **token, int ac, char *av[])
-{ 
+int grammer(char **token, int ac, char *av[])
+{	
+
 	int m, k, i, j, len = 0;
 	command check;
 	check.command = token[0];
+
+	(void) ac;
 	printf ("this is check.command -> %s\n", check.command);
 
 	for (j = 0; token[j] != NULL; j++)
@@ -48,6 +51,7 @@ char **grammer(char **token, int ac, char *av[])
 	{
 		printf("arguments: %s\n", check.arguments[m]);
 	}
+	return (0);
 }
 void cmd_insert_opt(command *cmd, char *opt)
 {
@@ -125,7 +129,6 @@ int err_opt(command *cmd)
 	int i, j, k, m, is_valid;
 	char *valid_options[] = {"-l", "-a"};
 	int num_valid_options = sizeof(valid_options) / sizeof(valid_options[0]);
-	int is_valid_options = 0;
 	int is_invalid_option_found = 0;
 
 	for (j = 0; j < cmd->num_opt; j++)
@@ -135,13 +138,11 @@ int err_opt(command *cmd)
 			is_valid = 0;
 			for (i = 1; cmd->options[j][i] != '\0'; i++)
 			{
-				is_valid_options = 0;
 				for (m = 0; m < num_valid_options; m++)
 				{
 					if (cmd->options[j][i] == valid_options[m][1])
 					{
 						is_valid++;
-						//break;
 					}
 				}
 				if (!is_valid)
@@ -150,11 +151,9 @@ int err_opt(command *cmd)
 					break;
 				}
 			}
-			//is_valid_options++;
 		}
 		else
 		{
-			is_valid_options = 0;
 			for (k = 0; k < num_valid_options; k++)
 			{
 				if (_strcmp(cmd->options[j], valid_options[k]) == 0)
@@ -187,7 +186,7 @@ int is_path(char *path)
 	return (1);
 }
 
-int err_arg(command *cmd)
+/*int err_arg(command *cmd)
 {
 	int k, j, i;
 	int wildcard = 0;
@@ -219,7 +218,7 @@ int err_arg(command *cmd)
 
 		}
 	}
-}
+}*/
 
 int match(const char *pattern, const char *text)
 {
@@ -241,6 +240,7 @@ int match(const char *pattern, const char *text)
 	}
 	return 0;
 }
+/*
 char **expand(char *pattern)
 {
 	DIR *dir;
@@ -277,7 +277,6 @@ char **expand(char *pattern)
 	if (dir == NULL)
 	{
 		sys_err("opendir");
-		return;
 	}
 
 	while ((entry = readdir(dir)) != NULL)
@@ -304,4 +303,4 @@ char **expand(char *pattern)
 
 	return (results);
 }
-
+*/

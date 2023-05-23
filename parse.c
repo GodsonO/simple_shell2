@@ -6,56 +6,48 @@
  * @ac: a
  * @av; v
  */
-void parse(char **token, int ac, char *av[])
+void execute(char **token, int ac, char *av[])
 {
-	int j = 1;
 	char *command = token[0];
 
+	(void) ac;
+	(void) av;
+	(void) command;
 
-	switch(token[0])
+
+	if (_strcmp((token[0]), "exit"))
 	{
-		case "exit":
-			printf("am exiting");
-			break;
-		case "cd":
-			printf("am changing directories");
-			break;
-		case "echo":
-			printf("i am echoing");
-			break;
-		case "alias":
-			printf("i am alias");
-			break;
-		case "unalias":
-			printf("i am unalias");
-			break;
-		case "pwd":
-			printf("i am pwd");
-			break;
-		default:
-			if (valid_cmd(command) == 0)
-			{
-				if (command[0][0] == '/')
-				{
-					//execute(token);
-				}
-				else
-				{
-					//path = get_path(token[0]);
-					//token[0] = path
-					//execute(token);
-				}
-				break;
-			}
-			else
-			{
-				err_msg("%s:", av[0]);
-				_putchar(j);
-				err_msg(" %s: not found\n", j, token[0]);
-				j++;
-			}
+		printf("am exiting\n");
+		my_exit(token);
 	}
+	else if (_strcmp((token[0]), "cd"))
+	{
+		printf("am changing directories");
+	}
+	else if (_strcmp((token[0]), "echo"))
+	{
+		printf("i am echoing");
+	}
+	else if(_strcmp((token[0]), "alias"))
+	{
+		printf("i am alias");
+	}
+	else if(_strcmp((token[0]), "unalias"))
+	{
+		printf("i am unalias");
+	}
+	else if (_strcmp((token[0]), "env"))
+	{
+		printf("i am env\n");
+		_env();
+	}
+	else
+	{
+		exec_cmnd(token);
+	}
+
 }
+/*
 int valid_cmd(const char *command)
 {
 	if (access(command, F_OK | X_OK) != -1)
@@ -63,4 +55,4 @@ int valid_cmd(const char *command)
 		printf("command is valid");
 		return (0);
 	}
-}
+}*/

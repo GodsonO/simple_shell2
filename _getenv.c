@@ -8,7 +8,7 @@ extern char **environ;
  * Return: returns NULL is failed and 
  * directories if successful
  */
-char *_getenv(char *name)
+char *_getenv(const char *name)
 {
 	size_t len;
 	char **ep;

@@ -9,7 +9,6 @@ char *find_path(char *filename)
 {
 	char *path = _getenv("PATH");
 	char *dir, *fullpath, *result = NULL;
-	struct stat stb;
 	int path_len, name_len;
 
 	if (path == NULL)

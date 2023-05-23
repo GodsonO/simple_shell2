@@ -9,13 +9,13 @@
 char **token(char *str)
 {
 	size_t tlen;
-	size_t i, j = 0;
+	size_t j = 0;
 	char delim[] = " \t\n";
 	char *str_copy = _strdup(str);
 	char *toks = _strtok(str, delim);
 	char **token = malloc(sizeof(char *) * (MAX_LEN));
 
-	size_t len = _strlen(str) + 1;
+	(void) str_copy;
 
 	if (token == NULL)
 		err_msg("Malloc failed");

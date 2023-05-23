@@ -14,6 +14,14 @@ int _execvp(const char *cmd, char *const arguments[])
 	char *path_copy;
 	char *dir;
 	char *path = _getenv("PATH");
+	char *path_separator = _strchr(cmd, '/');
+
+	if (path_separator != NULL)
+	{
+		execve(cmd, arguments, environ);
+		perror("execve");
+		return (-1);
+	}
 	if (path == NULL)
 	{
 		print_err("Error: PATH environment variable not set.\n");
@@ -40,10 +48,9 @@ int _execvp(const char *cmd, char *const arguments[])
 
 	return (-1);
 }
-/*
 int main() {
     const char *cmd = "ls";
-    char *const arguments[] = {"ls", "-l", "test_experiment", NULL};
+    char *const arguments[] = {"ls", "-l", NULL};
 
     int result = _execvp(cmd, arguments);
 
@@ -52,4 +59,4 @@ int main() {
     }
 
     return 0;
-}*/
+}
