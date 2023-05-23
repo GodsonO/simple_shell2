@@ -14,8 +14,15 @@
 
 #define MAX_LEN 100
 #define MAX_CMDS 10
+#define BUFFER_SIZE 1024
+
 extern char **environ;
 
+
+/**
+ *
+ *
+ */
 typedef struct grammar_rule
 {
 	char *command;
@@ -34,6 +41,7 @@ typedef struct simplecommand
 	char **arg;
 } cmd;
 
+int _fileno(FILE *stream);
 void exec_cmnd(char **command);
 void _env();
 void _printenv(void);
@@ -49,7 +57,7 @@ size_t _strcspn(const char *str, const char *charset);
 int _dup2(int oldfd, int newfd);
 int _execvp(const char *cmd, char *const arguments[]);
 int _fcntl(int fd, int cmd, ...);
-ssize_t _getline(char **lineptr, size_t *n);
+ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
 char *_strcat(char *dest, char *src);
 char *_getenv(const char *name);
 char *_strtok(char *str, char *delimiters);

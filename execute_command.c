@@ -194,7 +194,7 @@ int execute_pipeline(char *commands[], int num_commands)
 		close(pipefds[i][1]);
 	}
 	return (0);
-}*/
+}
 int main(int argc, char *argv[])
 {
 	if (argc != 2)
@@ -205,4 +205,4 @@ int main(int argc, char *argv[])
 
 	execute_script(argv[1]);
 	return (0);
-}
+}*/

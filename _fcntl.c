@@ -8,13 +8,10 @@
  */
 int _fcntl(int fd, int cmd, ...)
 {
-	int result, arg;
+	int arg, result = -1;
 	va_list argp;
 
 	va_start(argp, cmd);
-
-
-	result = -1;
 
 	switch (cmd)
 	{
@@ -37,23 +34,3 @@ int _fcntl(int fd, int cmd, ...)
 	va_end(argp);
 	return (result);
 }
-/*
-int main(void) {
-    int fd = open("example.txt", O_RDONLY);
-    if (fd == -1) {
-        perror("Error opening file");
-        return 1;
-    }
-
-    int newfd = _fcntl(fd, F_DUPFD, 0);  // Duplicate fd
-    if (newfd == -1) {
-        perror("Error in my_fcntl");
-        return 1;
-    }
-
-    printf("Successfully duplicated file descriptor. New descriptor: %d\n", newfd);
-
-    close(fd);  // Close the original file descriptor
-
-    return 0;
-}*/

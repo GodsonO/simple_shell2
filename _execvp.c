@@ -48,15 +48,3 @@ int _execvp(const char *cmd, char *const arguments[])
 
 	return (-1);
 }
-int main() {
-    const char *cmd = "ls";
-    char *const arguments[] = {"ls", "-l", NULL};
-
-    int result = _execvp(cmd, arguments);
-
-    if (result == -1) {
-        printf("Execution failed.\n");
-    }
-
-    return 0;
-}
