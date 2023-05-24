@@ -1,7 +1,7 @@
 #include "shell.h"
 int cov_int_to_str(int int_arg, char *int_str);
 /**
- * usage_err - print err to stdout
+ * write_err - print err to stdout
  * @str_arg: the msg to write to stdout
  * @str_len: string length
  */

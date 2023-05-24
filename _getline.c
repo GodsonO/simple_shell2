@@ -1,20 +1,23 @@
 #include "shell.h"
+
 #define BUFFER_SIZE 1024
+
+
+
+static int buffer_index;
+static int buffer_size;
+static char buffer[BUFFER_SIZE];
+
+static ssize_t read_buffer(FILE *stream);
+static int find_newline_index(void);
+static ssize_t process_line(char **lineptr, size_t *n, int newline_index);
+static ssize_t process_buffer(char **lineptr, size_t *n);
 
 /**
  * read_buffer - reads from screen
+ * @stream: the stream to read
  * Return: buffer_size
  */
-
-static char buffer[BUFFER_SIZE];
-static int buffer_index = 0;
-static int buffer_size = 0;
-
-static ssize_t process_buffer(char **lineptr, size_t *n);
-static ssize_t process_line(char **lineptr, size_t *n, int newline_index);
-static int find_newline_index(void);
-static ssize_t read_buffer(FILE *stream);
-
 static ssize_t read_buffer(FILE *stream)
 {
 	buffer_size = read(_fileno(stream), buffer, BUFFER_SIZE);
