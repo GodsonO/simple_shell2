@@ -39,5 +39,5 @@ char **token(char *str)
 		toks = _strtok(NULL, delim);
 	}
 	free(str_copy);
-	return(token);
+	return (token);
 }

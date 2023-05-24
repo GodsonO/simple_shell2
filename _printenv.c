@@ -1,6 +1,7 @@
 #include "shell.h"
-
-
+/**
+ * _printenv - prints env
+ */
 void _printenv(void)
 {
 	ssize_t nwrite;

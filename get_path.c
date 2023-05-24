@@ -48,21 +48,3 @@ char *find_path(char *filename)
 
 	return (result);
 }
-/*
-int main()
-{
-    char *filename = "/bin/ls";
-    char *path = find_path(filename);
-
-    if (path != NULL)
-    {
-        printf("Absolute path of '%s': %s\n", filename, path);
-        free(path);
-    }
-    else
-    {
-        printf("'%s' not found or not executable\n", filename);
-    }
-
-    return 0;
-}*/

@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * _strcspn - 
+ * _strcspn - gets the length of a string
  * @str: input string
  * @charset: the charcters to search for
  * Return: returns the length of string

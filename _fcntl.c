@@ -4,7 +4,7 @@
  * _fcntl - duplicate file discriptor
  * @fd: the file discriptor
  * @cmd: the new num
- *
+ * Return: result
  */
 int _fcntl(int fd, int cmd, ...)
 {

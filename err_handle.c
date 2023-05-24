@@ -109,11 +109,9 @@ void err_msg(const char *format, ...)
 	char *str_arg;
 	size_t str_len;
 	int int_arg;
-
 	const char *p = format;
 
 	va_start(argp, format);
-
 	while (*p != '\0')
 	{
 		if (*p == '%' && *(p + 1) != '\0')

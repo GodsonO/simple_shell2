@@ -1,12 +1,10 @@
 #include "shell.h"
-
 /**
  * main - implements a unix cmd interpreter
  * @ac: no of arrays
  * @av: array of strings read
  * Return: returns 0 if successful and -1 on failure
  */
-
 int main(int ac, char *av[])
 {
 	(void) av;
@@ -18,7 +16,7 @@ int main(int ac, char *av[])
 		char *input = NULL;
 		char **arguments = NULL;
 
-		while(1)
+		while (1)
 		{
 			nwrite = write(STDOUT_FILENO, "$ ", 2);
 			if (nwrite == -1)

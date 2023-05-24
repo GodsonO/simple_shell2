@@ -4,7 +4,8 @@
  * _dup2 - duplicate file discriptor to
  * new file discriptor
  * @oldfd: old
- *
+ * @newfd: new
+ * Return: result
  */
 int _dup2(int oldfd, int newfd)
 {
