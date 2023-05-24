@@ -9,6 +9,8 @@ char *_strdup(char *str)
 {
 	size_t len;
 	char *copy;
+	char *result;
+
 	if (str == NULL)
 	{
 		return (NULL);
@@ -23,5 +25,7 @@ char *_strdup(char *str)
 	}
 
 	_strcpy(copy, str);
-	return (copy);
+	result = copy;
+	free(copy);
+	return (result);
 }

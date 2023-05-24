@@ -33,7 +33,7 @@ int grammer(char **token, int ac, char *av[])
 		}
 	}
 	
-	if (err_cmd(&check) == 1)
+	if (err_cmd(&check, token, ac, av) == 1)
 	{
 		err_msg("%s: %s: not found\n", av[0], check.command);
 	}
@@ -85,10 +85,9 @@ void cmd_insert_arg(command *cmd, char *arg)
 	cmd->num_arg++;
 	cmd->arguments[cmd->num_arg] = NULL;
 }
-int err_cmd(command *cmd)
+int err_cmd(command *cmd, char **token, int ac, char *av[])
 {
 	int i;
-	char *path;
 	char *valid_commands[] = {"exit", "cd", "mkdir"};
 	int num_valid_cmd = sizeof(valid_commands) / sizeof(valid_commands[0]);
 	int is_valid_command = 0;
@@ -102,24 +101,23 @@ int err_cmd(command *cmd)
 			break;
 		}
 	}
-	if (is_valid_command > 0)
+	if (is_valid_command > 0 && err_opt(cmd) == 0)
 	{
 		printf("%s is a builtin\n", cmd->command);
+		execute(token, ac, av);
+
 		return (0);
 	}
-	else if (access(cmd->command, F_OK | X_OK) != -1)
+	else if ((access(cmd->command, F_OK | X_OK) != -1) && err_opt(cmd) == 0)
 	{
+		exec_cmnd(token);
 		printf("%s is a executable\n", cmd->command);
 		return (0);
 	}
 	else
 	{
-		path = find_path(cmd->command);
-		if (path != NULL)
-		{
-			printf("%s; is a executable\n", cmd->command);
-			return (0);
-		}
+		err_msg("Unknown: command");
+		return (0);
 	}
 	return (1);
 }

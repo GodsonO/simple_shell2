@@ -3,7 +3,7 @@
 /**
  * _dup2 - duplicate file discriptor to
  * new file discriptor
- * @oldfd: old 
+ * @oldfd: old
  *
  */
 int _dup2(int oldfd, int newfd)

@@ -9,12 +9,14 @@
 
 int main(int ac, char *av[])
 {
+	(void) av;
+
 	if (isatty(STDIN_FILENO) == 1)
 	{
-		int stats;
 		ssize_t nwrite;
+		const char *command;
 		char *input = NULL;
-		char **tokenized_input = NULL;
+		char **arguments = NULL;
 		while(1)
 		{
 			nwrite = write(STDOUT_FILENO, "$ ", 2);
@@ -29,14 +31,20 @@ int main(int ac, char *av[])
 				putchar('\n');
 				break;
 			}
-			tokenized_input = token(input);
-			stats = grammer(tokenized_input, ac, av);
-			if (stats == 0)
+			arguments = token(input);
+
+			command = arguments[0];
+			if (is_builtin_command(command))
 			{
-				execute(tokenized_input, ac, av);
+				execute_builtin_command(command, arguments);
 			}
+			else
+			{
+				execute_external_command(command, arguments);
+			}
+
 			free(input);
-			free_token(tokenized_input);
+			free_arguments(arguments);
 		}
 	}
 	else
@@ -46,10 +54,16 @@ int main(int ac, char *av[])
 			char *user_input = usr_input();
 			char **tokens = token(user_input);
 
-			if (grammer(tokens, ac, av) == 0)
+			if (is_builtin_command(tokens[0]))
 			{
-				exec_cmnd(tokens);
+				execute_builtin_command(tokens[0], tokens);
 			}
+			else
+			{
+				execute_external_command(tokens[0], tokens);
+			}
+			free(user_input);
+			free_arguments(tokens);
 		}
 		else
 		{

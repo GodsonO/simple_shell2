@@ -18,6 +18,7 @@ void exec_cmnd(char **command)
 	}
 	else if (pid == 0)
 	{
+		printf("i am inside child");
 		if (_execvp(command[0], command) == -1)
 		{
 			perror("_execve");

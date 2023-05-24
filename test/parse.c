@@ -43,7 +43,7 @@ void execute(char **token, int ac, char *av[])
 	}
 	else
 	{
-		exec_cmnd(token);
+		err_msg("bultin function not found\n");
 	}
 
 }
