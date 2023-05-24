@@ -34,6 +34,7 @@ int _execvp(const char *cmd, char *const arguments[])
 	while (dir != NULL)
 	{
 		char program_path[256];
+
 		_strncpy(program_path, dir, sizeof(program_path));
 		_strncat(program_path, "/", sizeof(program_path) - _strlen(program_path) - 1);
 		_strncat(program_path, cmd, sizeof(program_path) - _strlen(program_path) - 1);

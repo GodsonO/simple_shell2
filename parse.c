@@ -28,11 +28,11 @@ void execute(char **token, int ac, char *av[])
 	{
 		printf("i am echoing");
 	}
-	else if(_strcmp((token[0]), "alias"))
+	else if (_strcmp((token[0]), "alias"))
 	{
 		printf("i am alias");
 	}
-	else if(_strcmp((token[0]), "unalias"))
+	else if (_strcmp((token[0]), "unalias"))
 	{
 		printf("i am unalias");
 	}

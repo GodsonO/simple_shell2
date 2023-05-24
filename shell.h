@@ -43,7 +43,7 @@ typedef struct simplecommand
 
 int _fileno(FILE *stream);
 void exec_cmnd(char **command);
-void _env();
+void _env(void);
 void _printenv(void);
 int _atoi(char *s);
 void my_exit(char **arg);

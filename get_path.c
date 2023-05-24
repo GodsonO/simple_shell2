@@ -41,9 +41,9 @@ char *find_path(char *filename)
 			dir = strtok(NULL, ":");
 		}
 
-		if(result == NULL)
+		if (result == NULL)
 		{
-			return(NULL);
+			return (NULL);
 		}
 
 	return (result);

@@ -6,14 +6,15 @@
  *
  */
 int grammer(char **token, int ac, char *av[])
-{	
+{
 
 	int m, k, i, j, len = 0;
 	command check;
+
 	check.command = token[0];
 
 	(void) ac;
-	printf ("this is check.command -> %s\n", check.command);
+	printf("this is check.command -> %s\n", check.command);
 
 	for (j = 0; token[j] != NULL; j++)
 	{
@@ -32,14 +33,14 @@ int grammer(char **token, int ac, char *av[])
 			cmd_insert_arg(&check, token[i]);
 		}
 	}
-	
+
 	if (err_cmd(&check) == 1)
 	{
 		err_msg("%s: %s: not found\n", av[0], check.command);
 	}
 	else if (err_opt(&check) == 1)
 	{
-                err_msg("%s: invalid option --   %s\nTry '%s --help' for more information\n", check.command, check.options[0], check.command);
+		err_msg("%s: invalid option --   %s\nTry '%s --help' for more information\n", check.command, check.options[0], check.command);
 	}
 
 
@@ -60,7 +61,7 @@ void cmd_insert_opt(command *cmd, char *opt)
 		cmd->avl_opt = 1;
 		cmd->options = malloc(sizeof(char *));
 	}
-	else if(cmd->num_opt >= cmd->avl_opt)
+	else if (cmd->num_opt >= cmd->avl_opt)
 	{
 		cmd->avl_opt *= 2;
 		cmd->options = realloc(cmd->options, sizeof(char *) * cmd->avl_opt);
@@ -76,7 +77,7 @@ void cmd_insert_arg(command *cmd, char *arg)
 		cmd->avl_arg = 1;
 		cmd->arguments = malloc(sizeof(char *));
 	}
-	else if(cmd->num_arg >= cmd->avl_arg)
+	else if (cmd->num_arg >= cmd->avl_arg)
 	{
 		cmd->avl_arg *= 2;
 		cmd->arguments = realloc(cmd->arguments, sizeof(char *) * cmd->avl_arg);
