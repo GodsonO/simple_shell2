@@ -231,15 +231,15 @@ int match(const char *pattern, const char *text)
 	{
 		return (0);
 	}
-	if (*pattern == '?'|| *pattern == *text)
+	if (*pattern == '?' || *pattern == *text)
 	{
-		return (match(pattern + 1, text +1));
+		return (match(pattern + 1, text + 1));
 	}
 	if (*pattern == '*')
 	{
 		return (match(pattern + 1, text) || match(pattern, text + 1));
 	}
-	return 0;
+	return (0);
 }
 /*
 char **expand(char *pattern)

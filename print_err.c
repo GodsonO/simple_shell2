@@ -1,5 +1,4 @@
 #include "shell.h"
-
 /**
  * print_err - print err to stdout
  * @str: the msg to write to stdout
@@ -13,9 +12,10 @@ void print_err(const char *format, ...)
 	int int_arg;
 
 	const char *p = format;
+
 	va_start(argp, format);
 
-	while(*p != '\0')
+	while (*p != '\0')
 	{
 		if (*p == '%' && *(p + 1) != '\0')
 		{

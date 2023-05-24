@@ -8,7 +8,7 @@
 
 char *_strchr(const char *str, int c)
 {
-	while(*str)
+	while (*str)
 	{
 		if (*str == c)
 		{
