@@ -55,6 +55,8 @@ int main(int ac, char *av[])
 			char *user_input = usr_input();
 			char **tokens = token(user_input);
 
+			print("this token: -> %s", user_input);
+
 			if (is_builtin_command(tokens[0]))
 			{
 				execute_builtin_command(tokens[0], tokens);
@@ -68,7 +70,7 @@ int main(int ac, char *av[])
 		}
 		else
 		{
-			err_msg("usage: echo");
+			err_msg("Usage: %s command\n", av[0]);
 		}
 	}
 	return (0);
