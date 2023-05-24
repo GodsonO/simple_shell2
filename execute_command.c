@@ -21,7 +21,7 @@ int execute_cmd(char *command, int input_fd)
 
 	token = _strtok(command, " \t\n");
 
-	while(token != NULL && arg_count < MAX_LEN - 1)
+	while (token != NULL && arg_count < MAX_LEN - 1)
 	{
 		if (_strcmp(token, "<") == 0)
 		{
@@ -74,7 +74,7 @@ int execute_cmd(char *command, int input_fd)
 			int output_fd = open(output_file, output_file_mode, 0666);
 			_dup2(output_fd, STDOUT_FILENO);
 			close(output_fd);
-		}	
+		}
 
 		_execvp(args[0], args);
 

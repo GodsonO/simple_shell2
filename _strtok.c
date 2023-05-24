@@ -20,7 +20,7 @@ char *_strtok(char *str, char *delimiters)
 	}
 	else if (strtok_context == NULL)
 	{
-		return NULL;
+		return (NULL);
 	}
 
 	start = strtok_context;

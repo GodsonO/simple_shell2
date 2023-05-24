@@ -7,7 +7,7 @@ void _printenv(void)
 
 	char **ep = environ;
 
-	while(*ep != NULL)
+	while (*ep != NULL)
 	{
 		nwrite = write(STDOUT_FILENO, *ep, _strlen(*ep) + 1);
 		putchar('\n');
@@ -18,4 +18,4 @@ void _printenv(void)
 		}
 		ep++;
 	}
-}	
+}

@@ -16,11 +16,11 @@ char *usr_input(void)
 	{
 		result = lineptr;
 		lineptr = NULL;
-		return(result);
+		return (result);
 	}
 	else
 	{
 		free(lineptr);
-		return(NULL);
+		return (NULL);
 	}
 }

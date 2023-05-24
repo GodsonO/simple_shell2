@@ -13,7 +13,7 @@ static int buffer_size = 0;
 
 static ssize_t process_buffer(char **lineptr, size_t *n);
 static ssize_t process_line(char **lineptr, size_t *n, int newline_index);
-static int find_newline_index();
+static int find_newline_index(void);
 static ssize_t read_buffer(FILE *stream);
 
 static ssize_t read_buffer(FILE *stream)
@@ -33,7 +33,7 @@ static ssize_t read_buffer(FILE *stream)
  *
  */
 
-static int find_newline_index()
+static int find_newline_index(void)
 {
 	int i;
 
@@ -119,4 +119,4 @@ ssize_t _getline(char **lineptr, size_t *n, FILE *stream)
 	{
 		return (process_buffer(lineptr, n));
 	}
-}			
+}

@@ -49,9 +49,10 @@ void reverse_string(char *str, int length)
 	int i = 0;
 	int j = length - 1;
 
-	while(i < j)
+	while (i < j)
 	{
 		char temp = str[i];
+
 		str[i] = str[j];
 		str[j] = temp;
 		i++;
@@ -110,9 +111,10 @@ void err_msg(const char *format, ...)
 	int int_arg;
 
 	const char *p = format;
+
 	va_start(argp, format);
 
-	while(*p != '\0')
+	while (*p != '\0')
 	{
 		if (*p == '%' && *(p + 1) != '\0')
 		{

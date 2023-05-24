@@ -17,6 +17,7 @@ int main(int ac, char *av[])
 		const char *command;
 		char *input = NULL;
 		char **arguments = NULL;
+
 		while(1)
 		{
 			nwrite = write(STDOUT_FILENO, "$ ", 2);
@@ -70,5 +71,5 @@ int main(int ac, char *av[])
 			err_msg("usage: echo");
 		}
 	}
-	return(0);
+	return (0);
 }
