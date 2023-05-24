@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- *
+ * 
  *
  */
 
@@ -44,17 +44,3 @@ void exec_cmnd(char **command)
 		}
 	}
 }
-/*int main(void) {
-    char line[MAX_LINE_LENGTH];
-
-    // Read the command from standard input
-    if (fgets(line, sizeof(line), stdin) != NULL) {
-        // Remove the trailing newline character
-        line[strcspn(line, "\n")] = '\0';
-
-        // Execute the command
-        exec_cmnd(line);
-    }
-
-    return 0;
-}*/

@@ -20,8 +20,14 @@ extern char **environ;
 
 
 /**
- *
- *
+ * struct grammar_rule - grammer rule
+ * @command: a string
+ * @num_opt: integer
+ * @avl_opt: integer
+ * @options: pointer to a pointer char
+ * @num_arg: integer
+ * @avl_arg: integer
+ * @arguments: string
  */
 typedef struct grammar_rule
 {
@@ -33,7 +39,12 @@ typedef struct grammar_rule
 	int avl_arg;
 	char **arguments;
 } command;
-
+/**
+ * struct simplecommand - simple command
+ * @num_of_arg: number of arguments
+ * @num_of_avail_arg: number of available arguments
+ * @arg: the string
+ */
 typedef struct simplecommand
 {
 	int num_of_arg;

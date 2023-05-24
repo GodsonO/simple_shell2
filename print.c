@@ -1,9 +1,9 @@
 #include "shell.h"
-
+int cov_int_to_str(int int_arg, char *int_str);
 /**
  * usage_err - print err to stdout
- * @str: the msg to write to stdout
- *
+ * @str_arg: the msg to write to stdout
+ * @str_len: string length
  */
 void write_str(const char *str_arg, size_t str_len)
 {
@@ -15,43 +15,21 @@ void write_str(const char *str_arg, size_t str_len)
 		sys_err("write failed");
 	}
 }
-int cov_int_to_str(int int_arg, char *int_str)
-{
-	int i = 0;
-
-	if (int_arg == 0)
-	{
-		int_str[0] = '0';
-		i = 1;
-	}
-	else
-	{
-		if (int_arg < 0)
-		{
-			int_str[0] = '-';
-			int_arg = -int_arg;
-			i = 1;
-		}
-		while (int_arg > 0)
-		{
-			int_str[i++] = '0' + (int_arg % 10);
-			int_arg /= 10;
-		}
-	}
-	return (i);
-}
 /**
- *
- *
+ * rev_str - reverses string
+ * @str: string
+ * @length: length of string
+ * Return: void
  */
 void rev_str(char *str, int length)
 {
 	int i = 0;
 	int j = length - 1;
 
-	while(i < j)
+	while (i < j)
 	{
 		char temp = str[i];
+
 		str[i] = str[j];
 		str[j] = temp;
 		i++;
@@ -59,8 +37,9 @@ void rev_str(char *str, int length)
 	}
 }
 /**
- *
- *
+ * write_int - write an integer
+ * @int_arg: stores integer
+ * Return: void
  */
 void write_int(int int_arg)
 {
@@ -77,8 +56,9 @@ void write_int(int int_arg)
 	}
 }
 /**
- *
- *
+ * write_char - write a character
+ * @c: stores char
+ * Return: void
  */
 void write_char(char c)
 {
@@ -91,8 +71,9 @@ void write_char(char c)
 	}
 }
 /**
- *
- *
+ * print - print string
+ * @format: contains string
+ * Return: void
  */
 void print(const char *format, ...)
 {
@@ -100,11 +81,10 @@ void print(const char *format, ...)
 	char *str_arg;
 	size_t str_len;
 	int int_arg;
-
 	const char *p = format;
-	va_start(argp, format);
 
-	while(*p != '\0')
+	va_start(argp, format);
+	while (*p != '\0')
 	{
 		if (*p == '%' && *(p + 1) != '\0')
 		{

@@ -1,10 +1,9 @@
 #include "shell.h"
 #define BUFFER_SIZE 1024
 
-
 /**
- * 
- *
+ * read_buffer - reads from screen
+ * Return: buffer_size
  */
 
 static char buffer[BUFFER_SIZE];
@@ -29,8 +28,8 @@ static ssize_t read_buffer(FILE *stream)
 	return (buffer_size);
 }
 /**
- *
- *
+ * find_newline_index - to know the index of current command argument
+ * Return: void
  */
 
 static int find_newline_index(void)
@@ -48,8 +47,11 @@ static int find_newline_index(void)
 	return (-1);
 }
 /**
- *
- *
+ * process_line - checks the argument read from the command line
+ * @lineptr: pointer to a pointer char
+ * @n: size of char
+ * @newline_index: contains newline_index
+ * Return: line_length
  */
 
 static ssize_t process_line(char **lineptr, size_t *n, int newline_index)
@@ -73,8 +75,11 @@ static ssize_t process_line(char **lineptr, size_t *n, int newline_index)
 	return (line_length);
 }
 /**
- *
- *
+ * process_buffer - read many chars at once and calls
+ * the least possible the read system call
+ * @lineptr: pointer to a char pointer
+ * @n: size of char
+ * Return: buffer_length
  */
 static ssize_t process_buffer(char **lineptr, size_t *n)
 {
@@ -96,8 +101,11 @@ static ssize_t process_buffer(char **lineptr, size_t *n)
 	return (buffer_length);
 }
 /**
- *
- *
+ * _getline - reads an entire line from screen
+ * @lineptr: stores the address of the buffer
+ * @n: stores address of the newline character
+ * @stream: conitains the string
+ * Return: the number of characters read
  */
 ssize_t _getline(char **lineptr, size_t *n, FILE *stream)
 {

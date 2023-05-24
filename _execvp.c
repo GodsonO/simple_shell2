@@ -15,6 +15,9 @@ int _execvp(const char *cmd, char *const arguments[])
 	char *dir;
 	char *path = _getenv("PATH");
 	char *path_separator = _strchr(cmd, '/');
+	char program_path[256];
+	size_t len1 = sizeof(program_path) - _strlen(program_path) - 1;
+	size_t len2 = sizeof(program_path) - _strlen(program_path) - 1;
 
 	if (path_separator != NULL)
 	{
@@ -33,11 +36,9 @@ int _execvp(const char *cmd, char *const arguments[])
 
 	while (dir != NULL)
 	{
-		char program_path[256];
-
 		_strncpy(program_path, dir, sizeof(program_path));
-		_strncat(program_path, "/", sizeof(program_path) - _strlen(program_path) - 1);
-		_strncat(program_path, cmd, sizeof(program_path) - _strlen(program_path) - 1);
+		_strncat(program_path, "/", len1);
+		_strncat(program_path, cmd, len2);
 
 		execve(program_path, arguments, environ);
 
