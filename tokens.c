@@ -21,14 +21,14 @@ char **token(char *str)
 		err_msg("Malloc failed");
 
 
-	while(toks != NULL && j <= MAX_LEN)
+	while (toks != NULL && j <= MAX_LEN)
 	{
-		while(*toks == ' ' || *toks == '\t')
+		while (*toks == ' ' || *toks == '\t')
 			toks++;
 
 		tlen = strlen(toks);
 
-		while(tlen > 0 && (toks[tlen - 1] == ' ' || toks[tlen - 1] == '\t'))
+		while (tlen > 0 && (toks[tlen - 1] == ' ' || toks[tlen - 1] == '\t'))
 			tlen--;
 
 		if (tlen > 0)
@@ -39,5 +39,5 @@ char **token(char *str)
 		toks = _strtok(NULL, delim);
 	}
 
-	return(token);
+	return (token);
 }

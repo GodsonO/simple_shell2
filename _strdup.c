@@ -9,6 +9,7 @@ char *_strdup(char *str)
 {
 	size_t len;
 	char *copy;
+
 	if (str == NULL)
 	{
 		return (NULL);

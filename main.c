@@ -15,7 +15,8 @@ int main(int ac, char *av[])
 		ssize_t nwrite;
 		char *input = NULL;
 		char **tokenized_input = NULL;
-		while(1)
+
+		while (1)
 		{
 			nwrite = write(STDOUT_FILENO, "$ ", 2);
 			if (nwrite == -1)
@@ -56,5 +57,5 @@ int main(int ac, char *av[])
 			err_msg("usage: echo");
 		}
 	}
-	return(0);
+	return (0);
 }

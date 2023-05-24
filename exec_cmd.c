@@ -11,6 +11,7 @@ void exec_cmnd(char **command)
 	int exit_status;
 
 	pid_t pid = fork();
+
 	if (pid == -1)
 	{
 		perror("fork");
