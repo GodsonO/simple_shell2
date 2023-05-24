@@ -1,7 +1,9 @@
 #include"shell.h"
 
 /**
- *
+ * is_builtin_command - built in command
+ * @command: pointer char
+ * Return: 0
  */
 
 int is_builtin_command(const char *command)
@@ -10,7 +12,7 @@ int is_builtin_command(const char *command)
 	const char *builtins[] = {"cd", "help", "exit"};
 	int num_builtins = sizeof(builtins) / sizeof(char *);
 
-	for(i = 0; i < num_builtins; ++i)
+	for (i = 0; i < num_builtins; ++i)
 	{
 		if (_strcmp(command, builtins[i]) == 0)
 		{
@@ -19,7 +21,11 @@ int is_builtin_command(const char *command)
 	}
 	return (0);
 }
-
+/**
+ * execute_builtin_command - execute built in command
+ * @command: pointer char
+ * @arguments: pointer  to a pointer char
+ */
 void execute_builtin_command(const char *command, char **arguments)
 {
 	if (_strcmp(command, "cd") == 0)
@@ -57,7 +63,11 @@ void execute_builtin_command(const char *command, char **arguments)
 		err_msg("Unknown command: %s\n", command);
 	}
 }
-
+/**
+ * execute_external_command - executes external command
+ * @command: pointer char
+ * @arguments: pointer to pointer char
+ */
 void execute_external_command(const char *command, char **arguments)
 {
 	pid_t pid = fork();
@@ -79,9 +89,14 @@ void execute_external_command(const char *command, char **arguments)
 		wait(NULL);
 	}
 }
+/**
+ * free_arguments - frees arguments
+ * @arguments: pointer to a pointer char
+ */
 void free_arguments(char **arguments)
 {
 	int i;
+
 	for (i = 0; arguments[i] != NULL; ++i)
 	{
 		free(arguments[i]);

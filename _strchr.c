@@ -4,6 +4,7 @@
  * _strchr - searches for a string
  * @str: the input string ot comapare
  * @c: the target character
+ * Return: null
  */
 
 char *_strchr(const char *str, int c)
