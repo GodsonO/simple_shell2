@@ -1,9 +1,9 @@
 #include "shell.h"
-
+int cov_int_to_str(int int_arg, char *int_str);
 /**
- * usage_err - print err to stdout
- * @str: the msg to write to stdout
- *
+ * write_string - print err to stdout
+ * @str_arg: the msg to write to stdout
+ * @str_len: string length
  */
 void write_string(const char *str_arg, size_t str_len)
 {
@@ -15,34 +15,11 @@ void write_string(const char *str_arg, size_t str_len)
 		sys_err("write failed");
 	}
 }
-int convert_integer_to_string(int int_arg, char *int_str)
-{
-	int i = 0;
-
-	if (int_arg == 0)
-	{
-		int_str[0] = '0';
-		i = 1;
-	}
-	else
-	{
-		if (int_arg < 0)
-		{
-			int_str[0] = '-';
-			int_arg = -int_arg;
-			i = 1;
-		}
-		while (int_arg > 0)
-		{
-			int_str[i++] = '0' + (int_arg % 10);
-			int_arg /= 10;
-		}
-	}
-	return (i);
-}
 /**
- *
- *
+ * reverse_string - reverses string
+ * @str: string
+ * @length: length of string
+ * Return: void
  */
 void reverse_string(char *str, int length)
 {
@@ -60,14 +37,15 @@ void reverse_string(char *str, int length)
 	}
 }
 /**
- *
- *
+ * write_integer - write an integer
+ * @int_arg: stores integer
+ * Return: void
  */
 void write_integer(int int_arg)
 {
 	ssize_t nwrite;
 	char int_str[12];
-	int str_length = convert_integer_to_string(int_arg, int_str);
+	int str_length = cov_int_to_str(int_arg, int_str);
 
 	reverse_string(int_str, str_length);
 
@@ -78,8 +56,9 @@ void write_integer(int int_arg)
 	}
 }
 /**
- *
- *
+ * write_character- write a character
+ * @c: stores char
+ * Return: void
  */
 void write_character(char c)
 {
@@ -92,7 +71,9 @@ void write_character(char c)
 	}
 }
 /**
- *
+ * sys_err - system error
+ * @str: string
+ * Return: void
  */
 void sys_err(const char *str)
 {
@@ -100,8 +81,9 @@ void sys_err(const char *str)
 	exit(EXIT_FAILURE);
 }
 /**
- *
- *
+ * err_msg - error message
+ * @format: a pointer char
+ * Return: void
  */
 void err_msg(const char *format, ...)
 {
