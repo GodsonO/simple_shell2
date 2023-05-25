@@ -52,6 +52,8 @@ typedef struct simplecommand
 	char **arg;
 } cmd;
 
+int non_int_execute_command(char *command);
+void execute_piped_commands(char *command1, char *command2);
 void free_arguments(char **arguments);
 void execute_external_command(const char *command, char **arguments);
 void execute_builtin_command(const char *command, char **arguments);
